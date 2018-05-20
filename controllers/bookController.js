@@ -1,22 +1,21 @@
 // book controller routes
 var express = require('express');
 var router = express.Router();
-var Book = require('../models/Book')
+var Message = require('../models/Message')
 const mongoose = require('mongoose');
 
 // get /api/book/
 router.get('/',(req,res) => {
-  Book.find({}).exec().then((result=>{res.json(result);console.log(result);}))
+  Message.find({}).exec().then((result=>{res.json(result);console.log(result);}))
   
 });
 
 // post /api/book/
 router.post('/',(req,res) => {
-  var newBook = new Book();
-  newBook.title = req.body.title;
-  newBook.author = req.body.author;
-  newBook.price = req.body.price;
-  newBook.save();
+  var newMessage = new Message();
+  newMessage.email = req.body.email;
+  newMessage.msg = req.body.msg;
+  newMessage.save();
   res.send('success')
   console.log(req.body);
 });
